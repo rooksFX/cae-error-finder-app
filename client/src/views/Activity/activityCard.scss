@@ -1,0 +1,29 @@
+.activity-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .header {
+        padding: 5vmin 36px;
+        text-transform: uppercase;
+    }
+
+    .content-slot {
+        overflow: hidden;
+        flex-grow: 2;
+        line-height: 3vh;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 24px;
+
+        a {
+            color: #2699fb;
+        }
+    }
+}
+
+.answers-container {
+
+}

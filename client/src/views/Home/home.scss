@@ -1,0 +1,38 @@
+.home {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    
+    .header {
+        padding: 24px;
+    }
+
+
+    h2, h1 {
+        margin: 36px 14px;
+    }
+}
+
+.activity {
+    color: #2699fb;
+    background: #fcfdff;
+    display: block;
+    border-bottom: 1px solid #e5f3ff;
+    padding: 24px 0;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+        color: #3da4ff;
+        border-bottom: 1px solid #3da4ff;
+    }
+
+    &:first-child {
+        border-top: 1px solid #e5f3ff;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        color: #ccc;
+    }
+}
