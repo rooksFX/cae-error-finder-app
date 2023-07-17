@@ -19,7 +19,6 @@ export const QuizProvider = ({ children } : { children: JSX.Element }) => {
         const URL = process.env.NODE_ENV === 'production' ? process.env.API : '';
 
         console.log('URL: ', URL);
-        console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
 
         // const response = await fetch('/api/interview.mock.data/payload.json');
         const response = await fetch(`${URL}/api/activities`);
