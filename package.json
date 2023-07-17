@@ -1,0 +1,16 @@
+{
+    "name": "cae-error-finder-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "install-server": "cd backend && npm install",
+      "start-server": "cd backend && npm run nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/index.ts\"",
+      "install-client": "cd client && npm install",
+      "build-client": "cd client && npm run build",
+      "start-client": "cd client && npm run vite"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
