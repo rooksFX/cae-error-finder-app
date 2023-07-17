@@ -3,6 +3,9 @@ import Reducer from './Reducer'
 // import { activities as mockData } from '../utils/mockData';
 import { IActivities, IResults, IState, ActionTypes } from './types';
 
+const PROD_API = 'https://cae-error-finder-app-service.onrender.com'
+const URL = process.env.NODE_ENV === 'production' ? PROD_API : '';
+
 const initialState: IState = {
     activities: null,
     results: null
@@ -15,8 +18,6 @@ export const QuizProvider = ({ children } : { children: JSX.Element }) => {
 
     const setActivities = async () => {
         // const payload: IActivities = mockData;
-
-        const URL = process.env.NODE_ENV === 'production' ? process.env.API : '';
 
         console.log('URL: ', URL);
 
