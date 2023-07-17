@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { IQuestion, IRound } from '../../context/types'
 import Questions from '../Question/Questions'
 

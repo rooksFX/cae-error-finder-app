@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { IRoundAnswers } from '../../context/types'
 import { QuizContext } from '../../context/State'
 import { Link, useNavigate } from 'react-router-dom'

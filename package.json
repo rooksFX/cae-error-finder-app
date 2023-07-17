@@ -4,11 +4,11 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "install-server": "cd backend && npm install",
-      "start-server": "cd backend && npm run nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node src/index.ts\"",
+      "install-server": "cd server && npm install",
+      "start-server": "cd server && npm run dev",
       "install-client": "cd client && npm install",
       "build-client": "cd client && npm run build",
-      "start-client": "cd client && npm run vite"
+      "start-client": "cd client && npm run dev"
     },
     "keywords": [],
     "author": "",

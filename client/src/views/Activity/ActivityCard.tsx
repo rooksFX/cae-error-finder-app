@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import QuestionCard from '../Question/QuestionCard'
+import { useContext, useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { QuizContext } from '../../context/State'
-import { ActivityNumberDisplay } from '../../constants'
 
 import './activityCard.scss'
 import Rounds from '../Round/Rounds'

@@ -1,7 +1,4 @@
-import { useEffect, useState } from 'react'
 import './App.scss'
-import axios from 'axios';
-import { activities } from './utils/mockData';
 import Home from './views/Home/Home';
 import { Route, Routes } from 'react-router-dom';
 import Activity from './views/Activity/ActivityCard';

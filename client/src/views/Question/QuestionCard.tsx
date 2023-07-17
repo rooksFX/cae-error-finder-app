@@ -1,4 +1,3 @@
-import React from 'react'
 import './questionCard.scss'
 import { IQuestion } from '../../context/types';
 

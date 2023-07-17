@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import QuestionCard from './QuestionCard'
 import './questions.scss';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ interface IQuestionsProps {
 }
 
 const Questions = ({ activityID, activityName, data : questions, round = null, updateRoundAnswers } : IQuestionsProps) => {
-  const { setResults, results } = useContext(QuizContext);
+  const { setResults } = useContext(QuizContext);
 
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const [answers, setAnswers] = useState<boolean[]>([]);

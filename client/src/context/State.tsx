@@ -1,6 +1,6 @@
-import { Dispatch, FC, createContext, useReducer } from 'react'
+import { Dispatch, createContext, useReducer } from 'react'
 import Reducer from './Reducer'
-import { activities as mockData } from '../utils/mockData';
+// import { activities as mockData } from '../utils/mockData';
 import { IActivities, IResults, IState, ActionTypes } from './types';
 
 const initialState: IState = {
@@ -14,7 +14,7 @@ export const QuizProvider = ({ children } : { children: JSX.Element }) => {
     const [state, dispatch]: [IState, Dispatch<any>] = useReducer(Reducer, initialState);
 
     const setActivities = async () => {
-        const payload: IActivities = mockData;
+        // const payload: IActivities = mockData;
 
         // const response = await fetch('/api/interview.mock.data/payload.json');
         const response = await fetch('/api/activities');

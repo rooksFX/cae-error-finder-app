@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 
 import './home.scss'
-import { QuizContext, QuizProvider } from '../../context/State';
+import { QuizContext } from '../../context/State';
 import { Link } from 'react-router-dom';
 
 const dummayActivitiesName = [

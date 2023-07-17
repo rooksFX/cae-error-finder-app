@@ -1,4 +1,3 @@
-import React, { FC } from 'react'
 import './activity-card.scss';
 
 const ActivityCard = ({ children }: { children: JSX.Element }) => {
