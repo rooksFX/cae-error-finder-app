@@ -1,38 +1,91 @@
+@import '../../c_app.scss';
+
 .home {
     width: 100%;
     box-sizing: border-box;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     
-    .header {
-        padding: 24px;
-    }
+    
+    header {
+        padding: 24px 24px 0 24px;;
+        text-align: center;
+        text-transform: uppercase;
+        width: 100%;
 
+        h3, h1 {
+            margin: 5vh 14px;
+        }
 
-    h2, h1 {
-        margin: 36px 14px;
+        h1 {
+            font-size: 2.5em;
+        }
+
+        @media (orientation: landscape) {
+            padding: 12px 12px 0 12px;
+        }
     }
 }
 
-.activity {
-    color: #2699fb;
-    background: #fcfdff;
-    display: block;
-    border-bottom: 1px solid #e5f3ff;
-    padding: 24px 0;
-    text-transform: uppercase;
-    cursor: pointer;
+.activities-slot {
+    flex: 2;
+    overflow-y: auto;
 
-    &:hover {
-        color: #3da4ff;
-        border-bottom: 1px solid #3da4ff;
+    @include small {
+        display: grid;
+        // width: 100%;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        padding: 1rem;
+        gap: 1rem;
     }
 
-    &:first-child {
-        border-top: 1px solid #e5f3ff;
-    }
+    .activity {
+        color: #2699fb;
+        background: #fcfdff;
+        display: block;
+        border-bottom: 1px solid #e5f3ff;
+        padding: 24px 0;
+        text-transform: uppercase;
+        cursor: pointer;
+    
+        &:focus {
+            color: #3da4ff;
+            transform: translate(2px, 2px);
+        }
 
-    &.disabled {
-        pointer-events: none;
-        color: #ccc;
+        @include small {
+            height: 200px;
+            padding: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #e5f3ff;
+            border-radius: 0.5rem;
+    
+            &:hover {
+                color: #3da4ff;
+                transform: translate(-2px, -2px);
+                border: 0px;
+                box-shadow: 10px 10px 21px -8px rgba(79, 118, 168, 0.75);
+            }
+        }
+    
+        &:hover {
+            color: #3da4ff;
+            transform: translate(-2px, -2px);
+            border: 0px;
+            box-shadow: 10px 10px 21px -8px rgba(79, 118, 168, 0.75);
+        }
+    
+        &:first-child {
+            border-top: 1px solid #e5f3ff;
+        }
+    
+        &.disabled {
+            pointer-events: none;
+            color: #ccc;
+        }
     }
 }

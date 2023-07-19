@@ -36,34 +36,28 @@ const ActivityCard = () => {
   if (!activity) return null
 
   return (
-    <div className='activity-card'>
-      <div className="header">
-        <h3>{activity?.activity_name} {hasRounds ? ` / ROUND ${currentRoundOrder}` : ''}</h3>
-      </div>
-      <div className="content-slot">
-        {/* Render questions or rounds */}
-        {hasRounds ?
-          (
-            <Rounds 
-              currentRoundOrder={currentRoundOrder}
-              activityID={activitiyID}
-              activityName={activity.activity_name}
-              updateRound={() => setCurrentRoundOrder(currentRoundOrder + 1)}
-              data={data as unknown as IRound[]}
-            />
-          )
-          :
-          (
-            <Questions
-              activityID={activitiyID}
-              activityName={activity.activity_name}
-              round={null}
-              data={data as unknown as IQuestion[]}
-            />
-          )
-        }
-      </div>
-    </div>
+    <>
+      {hasRounds ?
+        (
+          <Rounds 
+            currentRoundOrder={currentRoundOrder}
+            activityID={activitiyID}
+            activityName={activity.activity_name}
+            updateRound={() => setCurrentRoundOrder(currentRoundOrder + 1)}
+            data={data as unknown as IRound[]}
+          />
+        )
+        :
+        (
+          <Questions
+            activityID={activitiyID}
+            activityName={activity.activity_name}
+            round={null}
+            data={data as unknown as IQuestion[]}
+          />
+        )
+      }
+    </>
   )
 }
 

@@ -41,11 +41,11 @@ const Home = () => {
 
   return (
     <div className='home'>
-        <div className="header">
-          <h2>CAE</h2>
+        <header>
+          <h3>CAE</h3>
           <h1>{activities?.name ?? ''}</h1>
-        </div>
-        <div className='activities-slot'>
+        </header>
+        <div className='activities-slot custom-scroll'>
           {activities?.activities ? activities.activities.map(activitiy => (
             <Link className="activity" key={crypto.randomUUID()} to={`activity/${activitiy.order}`}>{activitiy.activity_name}</Link>
           )) : ''}

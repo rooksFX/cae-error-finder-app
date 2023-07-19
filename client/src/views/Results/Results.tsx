@@ -35,11 +35,11 @@ const Results = () => {
 
   return (
     <div className='results'>
-      <div className="header">
+      <header>
         <h3>{results.activityName}</h3>
         <h1>Results</h1>
-      </div>
-      <div className="answers-slot">
+      </header>
+      <div className="answers-slot custom-scroll">
         { (typeof results.answers[0] !== 'boolean') ?
           (results.answers as IRoundAnswers[]).map((answer) => (
             <div key={crypto.randomUUID()}  className='rounds-slot'>

@@ -1,41 +1,42 @@
-.question-card {
-    width: 100%;
-    height: 100%;
-    outline: 1px solid red;
+@import '../../c_app.scss';
 
-    display: none;
 
-    &.active {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        gap: 24px;
+.header {
+    padding: 0 24px;
+}
+
+.content {
+    padding: 24px;
+    border-color: #e5f3ff;
+    border-style: solid;
+    border-width: 1px 0px 1px 0px;
+    background: #fcfdff;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+
+    @include small {
+        flex-direction: row;
     }
-    
-    .header {
-        padding: 0 36px;
-    }
 
-    .content {
+    button {
+        border: none;
+        background: none;
         padding: 24px;
-        outline: 1px solid #2699fb;
-        background: #fcfdff;
-    }
+        text-align: center;
+        color: #2699fb;
+        flex: 1;
 
-    .actions {
-        display: flex;
-        margin-bottom: 24px;
 
-        button {
-            border: none;
-            background: none;
-            width: 50%;
-            padding: 24px;
-            text-align: center;
-            color: #2699fb;
+        &:active, &:hover {
+            background: #fcfdff;
+            cursor: pointer;
+            outline: 1px solid #e5f3ff;
 
-            &:active {
-                background: #fcfdff;
+            @include small {
+                // border-radius: 2vmin;
             }
         }
     }

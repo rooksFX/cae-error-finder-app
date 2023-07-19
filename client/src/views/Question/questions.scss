@@ -1,5 +1,70 @@
+@import '../../c_app.scss';
+
+.questions {
+    height: 100vh;
+    
+    @include small {
+        height: 100%;
+    }
+    
+    // @include medium {
+    //     padding: 10vmin;
+    // }
+    .question-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        // @media (orientation: landscape) {
+        //     background: red;
+        // }
+    
+        @include small {
+            @media (orientation: portrait) {
+                outline: 1px solid #e5f3ff;
+                border-radius: 2vmin;
+            }
+        }
+    
+        @include medium {
+            outline: 1px solid #e5f3ff;
+            border-radius: 2vmin;
+        }
+    }
+}
+    
+header {
+    padding: 24px;
+    text-transform: uppercase;
+
+    h3, h1 {
+        margin: 5vh 0px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+}
+
 .questions-slot {
-    overflow-x: auto;
+    overflow-x: hidden;
     height: 100%;
-    display: flex;
+}
+
+.question {
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 24px;
+
+    // @include small {
+    //     justify-content: space-between;
+    // }
+
+    &.active {
+        display: flex;
+    }
+    transition: all 0.25s ease-in 0s;
 }

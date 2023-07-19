@@ -65,12 +65,19 @@ const Rounds = ({ currentRoundOrder, activityID, activityName, updateRound, data
     updateRound();
   }
 
+  const handleClick = () => {
+    setDisplayRoundPage(false)
+  }
+
   return (
-    <div className='rounds-slot'>
+    <div className='rounds-slot' onClick={handleClick}>
       {displayRoundPage ? 
         (
           <div className='round-landing-page'>
-            <h1>ROUND {currentRoundOrder}</h1>
+            <header>
+              <h3>{activityName}</h3>
+              <h1>ROUND {currentRound.order}</h1>
+            </header>
           </div>
         )
         :

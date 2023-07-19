@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import QuestionCard from './QuestionCard'
+import Question from './Question'
 import './questions.scss';
 import { useNavigate } from 'react-router-dom';
 import { QuizContext } from '../../context/State';
@@ -20,7 +20,6 @@ const Questions = ({ activityID, activityName, data : questions, round = null, u
   const [answers, setAnswers] = useState<boolean[]>([]);
 
   const navigate = useNavigate();
-  
 
   const isActive = (order: number) => {
     return order === currentQuestion;
@@ -63,19 +62,43 @@ const Questions = ({ activityID, activityName, data : questions, round = null, u
     }
   }
 
-  useEffect(() => {
-    console.log('answers: ', answers);
-  }, [answers])
+  // const getPosition = (index: number) => {
+  //   if (currentQuestion < index) {
+  //     return `100vw`;
+  //   }
+  //   else if (currentQuestion > index) {
+  //     return `-100vw`;
+  //   }
+  //   return '0'
+  // }
+
+  const displayRound = () => {
+    return round ? ` / ROUND ${round.order}`: ''
+  }
 
   return (
-    <div className='questions-slot'>
-        {questions.map(question => (
-            <QuestionCard
-                answer={answer}
-                isActive={isActive(question.order)}
-                key={question.order} question={question}
-            />
-        ))}
+    <div className='questions'>
+      <div className="question-card">
+        <header>
+          <h3>{activityName}{displayRound()}</h3>
+          <h1>Q{currentQuestion}.</h1>
+        </header>
+        <div className='questions-slot'>
+            {questions.map((question, index) => (
+                <div 
+                  className={`question ${isActive(question.order) ? 'active': ''}`}
+                  // style={{ left: getPosition(question.order) }}
+                  key={crypto.randomUUID()}
+                >
+                  <Question
+                      answer={answer}
+                      isActive={isActive(question.order)}
+                      key={question.order} question={question}
+                  />
+                </div>
+            ))}
+        </div>
+      </div>
     </div>
   )
 }
