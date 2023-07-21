@@ -20,7 +20,7 @@ export interface IRoundAnswers {
 export interface IState {
     activities: IActivities | null;
     results: IResults | null;
-    setActivities?: () => void;
+    fetchActivities?: () => Promise<void>;
     setResults?: Dispatch<IResults>;
 }
 

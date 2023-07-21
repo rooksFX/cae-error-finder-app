@@ -13,9 +13,6 @@ const Results = () => {
   useEffect(() => {
     if (!results) navigate('/')
   }, [results, navigate])
-  
-
-  console.log('results: ', results);
 
   if (!results) return null;
 
@@ -40,6 +37,7 @@ const Results = () => {
         <h1>Results</h1>
       </header>
       <div className="answers-slot custom-scroll">
+        <div className="answers custom-scroll">
         { (typeof results.answers[0] !== 'boolean') ?
           (results.answers as IRoundAnswers[]).map((answer) => (
             <div key={crypto.randomUUID()}  className='rounds-slot'>
@@ -52,10 +50,11 @@ const Results = () => {
           :
           (results.answers as boolean[]).map((answer, index) => renderAnswer(answer, index))
         }
+        </div>
       </div>
-      <div className="footer">
-            <Link to='/' >HOME</Link>
-      </div>
+      <footer>
+            <Link to='/' ><h4>HOME</h4></Link>
+      </footer>
     </div>
   )
 }

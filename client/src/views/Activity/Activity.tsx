@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { QuizContext } from '../../context/State'
 
-import './activityCard.scss'
-import Rounds from '../Round/Rounds'
-import Questions from '../Question/Questions'
+import './activity.scss'
+import Rounds from '../Round/'
+import Questions from '../Question/'
 import { IActivity, IQuestion, IRound } from '../../context/types'
 
 const ActivityCard = () => {
@@ -23,9 +23,9 @@ const ActivityCard = () => {
     if (!activities) {
       navigate('/')
     } else {
-      const activity = activities.activities[activitiyID - 1]
-      setActivity(activity)
-      const questions = activity?.questions
+      const selectedActivity = activities.activities[activitiyID - 1]
+      setActivity(selectedActivity)
+      const questions = selectedActivity?.questions
       const hasRounds = questions?.length ? 'questions' in questions[0] : false
       setHasRounds(hasRounds)
       const data = questions

@@ -1,0 +1,9 @@
+@import '../../c_app.scss';
+
+.activity-card {
+    height: inherit;
+
+    @include small {
+        padding: 5vmin;
+    }
+}

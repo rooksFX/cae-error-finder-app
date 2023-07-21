@@ -1,33 +1,41 @@
 @import '../../c_app.scss';
 
 .results {
+    align-items: center;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    align-items: center;
+    justify-content: space-between;
     
     @include small {
         @media (orientation: portrait) {
-            height: 100%;
-            outline: 1px solid #e5f3ff;
             border-radius: 2vmin;
+            height: 100%;
+            outline: 1px solid $border-color;
         }
     }
 
     @include medium {
-        height: 100%;
-        outline: 1px solid #e5f3ff;
         border-radius: 2vmin;
+        height: 100%;
+        outline: 1px solid $border-color;
     }
 
     header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         padding: 24px 24px 0 24px;;
         text-align: center;
         text-transform: uppercase;
         width: 100%;
 
+        @media (orientation: portrait) {
+            height: 40%;
+        }
+
         h3, h1 {
-            margin: 6px 12px;
+            margin: 2vmin;
         }
 
         h1 {
@@ -35,105 +43,47 @@
         }
 
         @media (orientation: landscape) {
+            height: 30%;
             padding: 12px 12px 0 12px;
         }
     }
 
     .answers-slot {
-        overflow: auto;
-        flex-grow: 2;
-        width: 100%;
-        padding-top: 1px;
-
-        // @include small {
-        //     width: 40vw;
-        // }
+        background: $content-background-color;
+        border-radius: 25px;
+        box-shadow: $card-box-shadow;
+        overflow-y: hidden;
+        width: calc(100% - 10vmin);
 
         @media (orientation: landscape) {
-            width: 90%;
-            columns: 2;
-            column-fill: balance;
+            overflow-y: auto;
+        }
 
-            &:nth-col(2) {
-                background-color: red;
-            }
-
-            .answer {
-                // border: none;
-
-                &:first {
-                    background-color: red;
-                }
-            }
+        @include medium {
+            width: calc(70% - 10vmin);
+        }
+        
+        .answers {
+            border: 1px solid $border-color;
+            max-height: 100%;
+            overflow-y: auto;
         }
 
         .rounds-slot {
             height: auto;
-
-            &:first-child {
-                border-top: 1px solid #e5f3ff;
-            }
-            
-            &:last-child {
-                // border-bottom: 1px solid #e5f3ff;
-            }
         }
 
         .answer, .round {
-            padding: 24px;
-            background: #fcfdff;
+            background: $content-background-color;
+            border-bottom: 1px solid $border-color;
             display: flex;
             justify-content: space-between;
-            // border-bottom: 1px solid #e5f3ff;
-            margin-top: -1px;
-            border: 1px solid #e5f3ff;
-
-            @include small {
-                // border-color: #e5f3ff;
-                // border-style: solid;
-                // border-width: 0px 1px 1px 1px;
-            }
-
-            
-
-            &:first-child {
-                // border-top: 1px solid #e5f3ff;
-            }
+            padding: 24px;
         }
-
-        // .round {
-        //     padding: 24px;
-        //     border-bottom: 1px solid #e5f3ff;
-        //     background: #fcfdff;
-        //     display: flex;
-        //     justify-content: space-between;
-
-        //     &:first-child {
-        //         border-top: none;
-        //     }
-
-        //     &:last-child {
-        //         border-bottom: none;
-        //     }
-        // }
-
         .round {
-            text-align: center;
             font-weight: bold;
             justify-content: center;
-        }
-    }
-
-    .footer {
-        text-align: center;
-        padding: 24px;
-
-        a {
-            color: #2699fb;
-        }
-
-        @media (orientation: landscape) {
-            padding: 12px;
+            text-align: center;
         }
     }
 }

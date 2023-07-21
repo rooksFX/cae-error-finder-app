@@ -1,6 +1,6 @@
 @import '../../c_app.scss';
 
-.round-landing-page {
+.round-landing-view {
     header {
         padding: 24px;
 
@@ -16,11 +16,4 @@
 
 .rounds-slot {
     height: 100%;
-
-    // @include small {
-    //     margin: 5vmin;
-    //     border: 1px solid #e5f3ff;
-    //     height: 87.5vh;
-    //     border-radius: 14px;
-    // }
 }

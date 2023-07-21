@@ -4,23 +4,14 @@ $medium: 1024px;
 $large: 1280px;
 $xlarge: 1920px;
 
-@mixin mobile-portrait {
-    @media (min-width: #{$xsmall}) {
+$border-color: #e5f3ff;
+$primary-color: #2699fb;
 
-    }
-}
+$main-background-color: #f1f8Fb;
+$background-color: #3fa6ff;
+$content-background-color: #fcfdff;
 
-@mixin mobile-landscape {
-    
-}
-
-@mixin tablet-portrait {
-    
-}
-
-@mixin tablet-landscape {
-    
-}
+$card-box-shadow: 4px 4px 14px -6px rgba(0,0,0,0.32);
 
 @mixin xsmall {
     @media (min-width: #{$xsmall}) {

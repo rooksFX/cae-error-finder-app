@@ -20,7 +20,7 @@ const dummayActivitiesName = [
 const renderDummyActivities = (activitiesLength: number) => {
   const dummayActivities = [];
 
-  for (let i = activitiesLength; i < 10; i++) {
+  for (let i = activitiesLength; i < 8; i++) {
     const dummayActivity = <Link className="activity disabled" key={crypto.randomUUID()} to='/' >{dummayActivitiesName[i]}</Link>;
     dummayActivities.push(dummayActivity)
   }
@@ -29,28 +29,34 @@ const renderDummyActivities = (activitiesLength: number) => {
 }
 
 const Home = () => {
-  const { activities, setActivities } = useContext(QuizContext);
-
-  console.log('activities: ', activities);
+  const { activities, fetchActivities } = useContext(QuizContext);
 
   useEffect(() => {
-    if (setActivities) {
-      setActivities()
+    if (fetchActivities) {
+      void fetchActivities()
     }
   }, [])
 
   return (
     <div className='home'>
-        <header>
-          <h3>CAE</h3>
-          <h1>{activities?.name ?? ''}</h1>
-        </header>
-        <div className='activities-slot custom-scroll'>
-          {activities?.activities ? activities.activities.map(activitiy => (
-            <Link className="activity" key={crypto.randomUUID()} to={`activity/${activitiy.order}`}>{activitiy.activity_name}</Link>
-          )) : ''}
-          {renderDummyActivities(activities?.activities.length as number)}
-        </div>
+        {activities ?
+          <>
+            <header>
+              <h3>CAE</h3>
+              <h1>{activities?.name ?? ''}</h1>
+            </header>
+            <div className="activities-slot">
+              <div className='activities custom-scroll'>
+                {activities?.activities ? activities.activities.map(activitiy => (
+                  <Link className="activity" key={crypto.randomUUID()} to={`activity/${activitiy.order}`}><h3>{activitiy.activity_name}</h3></Link>
+                )) : ''}
+                {renderDummyActivities(activities?.activities.length)}
+              </div>
+            </div>
+          </>
+        :
+          null
+        }
     </div>
   )
 }

@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import { IQuestion, IRound } from '../../context/types'
-import Questions from '../Question/Questions'
+import Questions from '../Question/'
 
 import './rounds.scss';
 import { QuizContext } from '../../context/State';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../../components/modal/Modal';
 
 interface IRoundsProps {
     currentRoundOrder: number
@@ -19,15 +20,17 @@ interface IRoundAnswers {
   answers: boolean[];
 }
 
-const Rounds = ({ currentRoundOrder, activityID, activityName, updateRound, data: rounds } : IRoundsProps) => {
-  console.log('rounds: ', rounds);
-  console.log('currentRoundOrder: ', currentRoundOrder);
+const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data: rounds } : IRoundsProps) => {
   const { setResults } = useContext(QuizContext);
 
   const [displayRoundPage, setDisplayRoundPage] = useState(true)
   const [roundAnswers, setRoundAnswers] = useState<IRoundAnswers[]>([]);
+  const [isNextRoundPrompt, setIsNextRoundPrompt] = useState(false)
+  const [quetionsKey, setQuetionsKey] = useState(0)
 
   const currentRound = rounds.find(round => round.order === currentRoundOrder) as IRound;
+
+  const isLastRound = () => currentRoundOrder + 1 > rounds.length;
 
   const navigate = useNavigate();
 
@@ -47,11 +50,20 @@ const Rounds = ({ currentRoundOrder, activityID, activityName, updateRound, data
     }
     
     const newRoundAnswers = [...roundAnswers]
-    newRoundAnswers.push(newRoundAnswer)
-    setRoundAnswers(newRoundAnswers)
+    const roundAnswersExist = roundAnswers.find(round => round.order === currentRound.order)
 
+    // If Round has been previously answered already
+    // update the answers of the registered Round
+    if (roundAnswersExist) {
+      newRoundAnswers[currentRound.order-1] = newRoundAnswer
+    }
+    else {
+      newRoundAnswers.push(newRoundAnswer)
+    }
+    setRoundAnswers(newRoundAnswers)
     if (currentRoundOrder + 1 > rounds.length) {
       // Exit Questions
+      // Trigger prompt...
       if (setResults) {
         setResults({
           activityID: activityID,
@@ -59,21 +71,56 @@ const Rounds = ({ currentRoundOrder, activityID, activityName, updateRound, data
           answers: newRoundAnswers,
         });
       }
-      navigate('/results')
+      setIsNextRoundPrompt(true);
     }
-
-    updateRound();
+    else {
+      setIsNextRoundPrompt(true);
+    }
   }
 
   const handleClick = () => {
     setDisplayRoundPage(false)
   }
 
+  const handleNextRoundPrompt = () => {
+    if (isLastRound()) {
+      navigate('/results')
+    }
+    else {
+      updateRound();
+      setIsNextRoundPrompt(false)
+    }
+  }
+
+  const restartRound = () => {
+    setIsNextRoundPrompt(false)
+    setQuetionsKey(key => key + 1)
+  }
+
+  const renderNextRoundPromptModal = () => {
+    const content = isLastRound() ? (<h3>View results?</h3>) : (<h3>Move to the next round?</h3>)
+    const footer = (
+      <>
+        <button onClick={restartRound}><h4>RESTART ROUND</h4></button>
+        <button onClick={handleNextRoundPrompt}><h4>OKAY</h4></button>
+      </>
+    )
+    return {
+      content,
+      footer
+    }
+  }
+
   return (
     <div className='rounds-slot' onClick={handleClick}>
+      {isNextRoundPrompt &&
+        (
+          <Modal key={crypto.randomUUID()} content={renderNextRoundPromptModal()} />
+        )
+      }
       {displayRoundPage ? 
         (
-          <div className='round-landing-page'>
+          <div className='round-landing-view'>
             <header>
               <h3>{activityName}</h3>
               <h1>ROUND {currentRound.order}</h1>
@@ -83,7 +130,7 @@ const Rounds = ({ currentRoundOrder, activityID, activityName, updateRound, data
         :
         (
           <Questions
-            key={currentRoundOrder}
+            key={quetionsKey}
             activityID={activityID}
             activityName={activityName}
             round={currentRound}
@@ -97,4 +144,4 @@ const Rounds = ({ currentRoundOrder, activityID, activityName, updateRound, data
   )
 }
 
-export default Rounds
+export default Round
