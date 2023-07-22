@@ -1,8 +1,9 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import './home.scss'
 import { QuizContext } from '../../context/State';
 import { Link } from 'react-router-dom';
+import Spinner from '../../components/spinner/Spinner';
 
 const dummayActivitiesName = [
   'Activity One',
@@ -30,32 +31,46 @@ const renderDummyActivities = (activitiesLength: number) => {
 
 const Home = () => {
   const { activities, fetchActivities } = useContext(QuizContext);
+  const [isFecthing, setIsFecthing] = useState(true);
 
   useEffect(() => {
     if (fetchActivities) {
-      void fetchActivities()
+      fetchActivities().finally(() => {
+        setIsFecthing(false);
+      })
     }
   }, [])
 
   return (
     <div className='home'>
-        {activities ?
-          <>
-            <header>
-              <h3>CAE</h3>
-              <h1>{activities?.name ?? ''}</h1>
-            </header>
-            <div className="activities-slot">
-              <div className='activities custom-scroll'>
-                {activities?.activities ? activities.activities.map(activitiy => (
-                  <Link className="activity" key={crypto.randomUUID()} to={`activity/${activitiy.order}`}><h3>{activitiy.activity_name}</h3></Link>
-                )) : ''}
-                {renderDummyActivities(activities?.activities.length)}
-              </div>
+        {isFecthing ? (
+            <div className="spinner-slot">
+              <Spinner loadingMessage='Loading...'/>
             </div>
-          </>
-        :
-          null
+          )
+          :
+          (
+            <>
+              {activities ?
+                <>
+                  <header>
+                    <h3>CAE</h3>
+                    <h1>{activities?.name ?? ''}</h1>
+                  </header>
+                  <div className="activities-slot">
+                    <div className='activities custom-scroll'>
+                      {activities?.activities ? activities.activities.map(activitiy => (
+                        <Link className="activity" key={crypto.randomUUID()} to={`activity/${activitiy.order}`}><h3>{activitiy.activity_name}</h3></Link>
+                      )) : ''}
+                      {renderDummyActivities(activities?.activities.length)}
+                    </div>
+                  </div>
+                </>
+              :
+                null
+              }
+            </>
+          )
         }
     </div>
   )
