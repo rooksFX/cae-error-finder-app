@@ -6,13 +6,13 @@ import cors from 'cors';
 
 const app = express();
 
-const PROD_CLIENT = 'https://cae-error-finder-app-client.onrender.com';
+const PROD_CLIENTS = ['https://cae-error-finder-app-client.onrender.com', 'https://cae-error-finder.onrender.com/'];
 
 app.get('/', (req, res) => {
     res.send('Hi World!');
 });
 
-app.use(cors({ origin: PROD_CLIENT }))
+app.use(cors({ origin: PROD_CLIENTS }))
 app.get('/api/activities', (req, res) => {
     axios({
         method: 'GET',
