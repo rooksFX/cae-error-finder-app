@@ -13,7 +13,7 @@ interface IQuestionsProps {
 }
 
 const Questions = ({ activityID, activityName, data : questions, round = null, updateRoundAnswers } : IQuestionsProps) => {
-  const { setResults } = useContext(QuizContext);
+  const { setResultsAction } = useContext(QuizContext);
 
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const [answers, setAnswers] = useState<boolean[]>([]);
@@ -40,8 +40,8 @@ const Questions = ({ activityID, activityName, data : questions, round = null, u
         }
         else {
           // Update results
-          if (setResults) {
-              setResults({
+          if (setResultsAction) {
+              setResultsAction({
                   activityID,
                   activityName,
                   answers: updatedAnswers,

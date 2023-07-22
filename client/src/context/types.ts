@@ -20,16 +20,21 @@ export interface IRoundAnswers {
 export interface IState {
     activities: IActivities | null;
     results: IResults | null;
-    fetchActivities?: () => Promise<void>;
-    setResults?: Dispatch<IResults>;
+    error: string;
+    fetchActivitiesAction?: () => Promise<void>;
+    setResultsAction?: Dispatch<IResults>;
 }
 
 export enum ActionTypes {
     GET_ACTIVITIES = 'GET_ACTIVITIES',
+    SET_ERROR = 'SET_ERROR',
     SET_RESULTS = 'SET_RESULTS',
 }
 
-export type TActionTypes = { type: ActionTypes.GET_ACTIVITIES, payload: IActivities } | { type: ActionTypes.SET_RESULTS, payload: IResults }
+export type TActionTypes = 
+    { type: ActionTypes.GET_ACTIVITIES, payload: IActivities }
+    | { type: ActionTypes.SET_RESULTS, payload: IResults }
+    | { type: ActionTypes.SET_ERROR, payload: string } 
 
 export interface IAction {
     type: 'GET_ACTIVITIES' | 'SET_RESULTS';

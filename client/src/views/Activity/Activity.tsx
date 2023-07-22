@@ -6,22 +6,35 @@ import './activity.scss'
 import Rounds from '../Round/'
 import Questions from '../Question/'
 import { IActivity, IQuestion, IRound } from '../../context/types'
+import Spinner from '../../components/spinner/Spinner'
+import ErrorView from '../../components/error/Error'
 
 const ActivityCard = () => {
   const navigate = useNavigate()
 
   const { activitiyID = 0} : { activitiyID?: number} = useParams()
 
-  const { activities } = useContext(QuizContext)
+  const { activities, error, fetchActivitiesAction } = useContext(QuizContext)
 
   const [activity, setActivity] = useState<IActivity | null>(null)
   const [hasRounds, setHasRounds] = useState(false)
   const [data, setData] = useState<IQuestion[] | IRound[] | null>(null)
   const [currentRoundOrder, setCurrentRoundOrder] = useState(1)
+  const [IsFetching, setIsFetching] = useState(false);
+
+  const fetchActivities = () => {
+      if (fetchActivitiesAction) {
+        setIsFetching(true);
+        void fetchActivitiesAction().finally(() => {
+          setIsFetching(false);
+        })
+      }
+  }
 
   useEffect(() => {
     if (!activities) {
-      navigate('/')
+      // navigate('/')
+      fetchActivities();
     } else {
       const selectedActivity = activities.activities[activitiyID - 1]
       setActivity(selectedActivity)
@@ -33,7 +46,17 @@ const ActivityCard = () => {
     }
   }, [activities, activitiyID, navigate])
 
+  if (error) return (
+    <ErrorView />
+  )
+
   if (!activity) return null
+
+  if (IsFetching) return (
+              <div className="spinner-slot">
+                <Spinner loadingMessage='Loading...'/>
+              </div>
+            )
 
   return (
     <>

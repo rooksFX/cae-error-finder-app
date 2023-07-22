@@ -21,7 +21,7 @@ interface IRoundAnswers {
 }
 
 const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data: rounds } : IRoundsProps) => {
-  const { setResults } = useContext(QuizContext);
+  const { setResultsAction } = useContext(QuizContext);
 
   const [displayRoundPage, setDisplayRoundPage] = useState(true)
   const [roundAnswers, setRoundAnswers] = useState<IRoundAnswers[]>([]);
@@ -64,8 +64,8 @@ const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data:
     if (currentRoundOrder + 1 > rounds.length) {
       // Exit Questions
       // Trigger prompt...
-      if (setResults) {
-        setResults({
+      if (setResultsAction) {
+        setResultsAction({
           activityID: activityID,
           activityName: activityName,
           answers: newRoundAnswers,

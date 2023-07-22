@@ -8,7 +8,8 @@ const URL = process.env.NODE_ENV === 'production' ? PROD_API : '';
 
 const initialState: IState = {
     activities: null,
-    results: null
+    results: null,
+    error: '',
 }
 
 export const QuizContext = createContext<IState>(initialState);
@@ -16,7 +17,7 @@ export const QuizContext = createContext<IState>(initialState);
 export const QuizProvider = ({ children } : { children: JSX.Element }) => {
     const [state, dispatch]: [IState, Dispatch<TActionTypes>] = useReducer(Reducer, initialState);
 
-    const fetchActivities = async () => {
+    const fetchActivitiesAction = async () => {
         try {
             const response = await fetch(`${URL}/api/activities`)
             const data = await response.json() as IActivities;
@@ -26,12 +27,15 @@ export const QuizProvider = ({ children } : { children: JSX.Element }) => {
                 payload: data,
             })
         } catch (error) {
-            // Handle Error
-            console.log('error: ', error);
+            console.error('error: ', error);
+            dispatch({
+                type: ActionTypes.SET_ERROR,
+                payload: 'Ooop! Something went wrong.',
+            })
         }
     }
 
-    const setResults = (payload: IResults) => {
+    const setResultsAction = (payload: IResults) => {
 
         dispatch({
             type: ActionTypes.SET_RESULTS,
@@ -42,10 +46,11 @@ export const QuizProvider = ({ children } : { children: JSX.Element }) => {
     return (
         <QuizContext.Provider
             value={{
-                fetchActivities,
-                setResults,
+                fetchActivitiesAction,
+                setResultsAction,
                 activities: state.activities,
                 results: state.results,
+                error: state.error,
             }}
         >
             {children}

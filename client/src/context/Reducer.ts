@@ -12,5 +12,10 @@ export default (state: IState, action: TActionTypes) : IState => {
                 ...state,
                 results: action.payload
             }
+        case ActionTypes.SET_ERROR:
+            return {
+                ...state,
+                error: action.payload
+            }
     }
 }

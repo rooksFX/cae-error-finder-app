@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 
 import './home.scss'
-import { QuizContext } from '../../context/State';
-import { Link } from 'react-router-dom';
-import Spinner from '../../components/spinner/Spinner';
+import { QuizContext } from '../../context/State'
+import { Link } from 'react-router-dom'
+import Spinner from '../../components/spinner/Spinner'
+import ErrorView from '../../components/error/Error'
 
 const dummayActivitiesName = [
   'Activity One',
@@ -30,50 +31,56 @@ const renderDummyActivities = (activitiesLength: number) => {
 }
 
 const Home = () => {
-  const { activities, fetchActivities } = useContext(QuizContext);
-  const [isFecthing, setIsFecthing] = useState(true);
+  const { activities, error, fetchActivitiesAction } = useContext(QuizContext);
+  const [isFecthing, setIsFetching] = useState(false);
+
+  const fetchActivities = () => {
+    if (fetchActivitiesAction) {
+      fetchActivitiesAction().finally(() => {
+        setIsFetching(false);
+      })
+    }
+  }
 
   useEffect(() => {
-    if (fetchActivities) {
-      fetchActivities().finally(() => {
-        setIsFecthing(false);
-      })
+    if (!activities) {
+      setIsFetching(true);
+      fetchActivities();
     }
   }, [])
 
-  return (
+  if (error) return (
+    <ErrorView returnHomeEnabled={false} />
+  )
+
+  if (isFecthing) return (
     <div className='home'>
-        {isFecthing ? (
-            <div className="spinner-slot">
-              <Spinner loadingMessage='Loading...'/>
-            </div>
-          )
-          :
-          (
-            <>
-              {activities ?
-                <>
-                  <header>
-                    <h3>CAE</h3>
-                    <h1>{activities?.name ?? ''}</h1>
-                  </header>
-                  <div className="activities-slot">
-                    <div className='activities custom-scroll'>
-                      {activities?.activities ? activities.activities.map(activitiy => (
-                        <Link className="activity" key={crypto.randomUUID()} to={`activity/${activitiy.order}`}><h3>{activitiy.activity_name}</h3></Link>
-                      )) : ''}
-                      {renderDummyActivities(activities?.activities.length)}
-                    </div>
-                  </div>
-                </>
-              :
-                null
-              }
-            </>
-          )
-        }
+      <div className="spinner-slot">
+        <Spinner loadingMessage='Loading...'/>
+      </div>
     </div>
   )
+
+  if (activities) return (
+    <div className='home'>
+      <>
+        <header>
+          <h3>CAE</h3>
+          <h1>{activities?.name ?? ''}</h1>
+        </header>
+        <div className="activities-slot">
+          <div className='activities custom-scroll'>
+            {activities?.activities ? activities.activities.map(activitiy => (
+              <Link className="activity" key={crypto.randomUUID()} to={`activity/${activitiy.order}`}><h3>{activitiy.activity_name}</h3></Link>
+            )) : ''}
+            {renderDummyActivities(activities?.activities.length)}
+          </div>
+        </div>
+      </>
+    </div>
+  )
+
+  return null
 }
 
 export default Home

@@ -10,13 +10,14 @@
 
 #app {
     background-color: $background-color;
-    border-radius: 25px;
+    // border-radius: 25px;
     height: 100vh;
     text-size-adjust: 80%;
 }
 
 header {
     color: #fff;
+    text-transform: uppercase;
 }
 
 footer {
@@ -37,6 +38,14 @@ button {
     &:hover, &:active {
         cursor: pointer;
     }
+}
+
+.spinner-slot {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100vw;
 }
 
 .custom-scroll {

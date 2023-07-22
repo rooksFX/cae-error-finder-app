@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Activity from './views/Activity/';
 import Results from './views/Results/';
 import { QuizProvider } from './context/State';
-import PageNotFound from './views/page-not-found/PageNotFound';
+import Error from './components/error/Error';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
           <Route path='/' element={ <Home />}/>
           <Route path={`/activity/:activitiyID`} element={ <Activity />}/>
           <Route path={`/results`} element={ <Results />}/>
-          <Route path='*' element={ <PageNotFound />}/>
+          <Route path='*' element={ <Error />}/>
         </Routes>
       </QuizProvider>
     </div>
