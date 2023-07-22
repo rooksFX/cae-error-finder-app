@@ -1,4 +1,3 @@
-import React from 'react'
 import './spinner.scss'
 
 const Spinner = ({ loadingMessage } : { loadingMessage: string }) => {
