@@ -76,11 +76,11 @@ const Questions = ({ activityID, activityName, data : questions, round = null, u
       <div className="question-card-slot">
         <div className="question-card">
           <div className="question">
-            <h3>"{renderQuestion(questions[currentQuestion-1].stimulus)}"</h3>
+            <h4>"{renderQuestion(questions[currentQuestion-1].stimulus)}"</h4>
           </div>
           <div className="actions">
-            <button onClick={() => handleAnswer(true)}><h3>CORRECT</h3></button>
-            <button onClick={() => handleAnswer(false)}><h3>INCORRECT</h3></button>
+            <button onClick={() => handleAnswer(true)}><h4>CORRECT</h4></button>
+            <button onClick={() => handleAnswer(false)}><h4>INCORRECT</h4></button>
           </div>
         </div>
 
