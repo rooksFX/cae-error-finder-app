@@ -21,16 +21,12 @@
     header {
         display: flex;
         flex-direction: column;
+        height: 50%;
         justify-content: center;
-        padding: 24px 24px 0 24px;
+        padding: 12px 12px 0 12px;
         text-transform: uppercase;
         width: 100%;
         // max-width: 768px;
-        
-    
-        @media (orientation: portrait) {
-            height: 60%;
-        }
     
         h3, h1 {
             margin: 2vmin;
@@ -39,26 +35,40 @@
         h1 {
             font-size: 2.5em;
         }
+
+        // Phone > landscape
+        @include small-landscape {
+            height: 35%;
+        }
     
-        @media (orientation: landscape) {
-            height: 30%;
-            padding: 12px 12px 0 12px;
+        // tablet portrait
+        @include small-portrait {
+            height: 70%;
+        }
+    
+        // tablet landscape and up
+        @include medium {
+            height: 60%;
         }
     }
 
     .question-card-slot {
-        padding: 5vmin;
         display: flex;
+        height: 50%;
         justify-content: center;
-    
-        @media (orientation: portrait) {
-            height: 40%;
-        }
-    
-        @media (orientation: landscape) {
-            height: 70%;
-        }
+        padding: 5vmin;
 
+        // Phone > landscape
+        @include small-landscape {
+            height: 65%;
+        }
+    
+        // tablet portrait
+        @include small-portrait {
+            height: 30%;
+        }
+    
+        // tablet landscape and up
         @include medium {
             height: 40%;
         }
@@ -75,7 +85,7 @@
             max-width: 768px;
 
             .question {
-                padding: 24px 24px 0 24px;
+                padding: 12px 12px 0 12px;
 
                 .highlight{ 
                     color: #ff7525;
@@ -89,7 +99,16 @@
                 gap: 12px;
                 justify-content: space-between;
                 padding: 12px;
-                flex-direction: row;
+
+                // Phone > landscape
+                @include small-landscape {
+                    flex-direction: row;
+                }
+
+                // Up
+                @include small {
+                    flex-direction: row;
+                }
             
                 button {
                     background-color: #2699fb;
