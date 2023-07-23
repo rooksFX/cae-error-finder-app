@@ -36,7 +36,6 @@ const ActivityCard = () => {
 
   useEffect(() => {
     if (!activities) {
-      // navigate('/')
       fetchActivities();
     } else {
       const selectedActivity = activities.activities[activitiyID - 1]

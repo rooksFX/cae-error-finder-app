@@ -36,16 +36,6 @@ export type TActionTypes =
     | { type: ActionTypes.SET_RESULTS, payload: IResults }
     | { type: ActionTypes.SET_ERROR, payload: string } 
 
-export interface IAction {
-    type: 'GET_ACTIVITIES' | 'SET_RESULTS';
-    payload: IActivities | IResults;
-}
-
-export interface IReducer {
-    state: IState;
-    action: IAction;
-}
-
 export interface IActivity {
     activity_name: string;
     order: number;

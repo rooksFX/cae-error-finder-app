@@ -2,14 +2,14 @@ import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import { QuizContext } from '../../context/State';
-import { IQuestion, IRound } from '../../context/types'
+import { IQuestion, IRound, IRoundAnswers } from '../../context/types'
 
 import Questions from '../Question/'
 import Modal from '../../components/modal';
 
 import './rounds.scss';
 
-interface IRoundsProps {
+interface IRoundProps {
     currentRoundOrder: number
     activityID: number
     activityName: string
@@ -17,12 +17,7 @@ interface IRoundsProps {
     data: IRound[]
 }
 
-interface IRoundAnswers {
-  order: number;
-  answers: boolean[];
-}
-
-const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data: rounds } : IRoundsProps) => {
+const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data: rounds } : IRoundProps) => {
   const { setResultsAction } = useContext(QuizContext);
 
   const [displayRoundPage, setDisplayRoundPage] = useState(true)
