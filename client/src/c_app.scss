@@ -16,7 +16,7 @@ $main-background-color: #f1f8Fb;
 $background-color: #3fa6ff;
 $content-background-color: #fcfdff;
 
-$card-box-shadow: 4px 4px 14px -6px rgba(0,0,0,0.32);
+$card-box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
 @mixin xsmall {
     @media (min-width: #{$xsmall}) {
