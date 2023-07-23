@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+
+import { QuizContext } from '../../context/State'
+
+import ErrorView from '../../components/error'
+import Spinner from '../../components/spinner'
 
 import './home.scss'
-import { QuizContext } from '../../context/State'
-import { Link } from 'react-router-dom'
-import Spinner from '../../components/spinner'
-import ErrorView from '../../components/error'
 
 const dummayActivitiesName = [
   'Activity One',

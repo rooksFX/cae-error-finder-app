@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
+import { QuizContext } from '../../context/State';
 import { IQuestion, IRound } from '../../context/types'
+
 import Questions from '../Question/'
+import Modal from '../../components/modal';
 
 import './rounds.scss';
-import { QuizContext } from '../../context/State';
-import { useNavigate } from 'react-router-dom';
-import Modal from '../../components/modal';
 
 interface IRoundsProps {
     currentRoundOrder: number

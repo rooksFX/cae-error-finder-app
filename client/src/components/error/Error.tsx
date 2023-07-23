@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom'
-import './error.scss'
 import { useContext } from 'react';
+import { Link } from 'react-router-dom'
+
 import { QuizContext } from '../../context/State';
+
+import './error.scss'
 
 const Error = ({ returnHomeEnabled = true } : { returnHomeEnabled?: boolean }) => {
   const { error } = useContext(QuizContext);

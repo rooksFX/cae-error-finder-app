@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react'
-import './questions.scss';
 import { useNavigate } from 'react-router-dom';
+
 import { QuizContext } from '../../context/State';
 import { IQuestion, IRound } from '../../context/types';
+
+import './questions.scss';
 
 interface IQuestionsProps {
     activityID: number;

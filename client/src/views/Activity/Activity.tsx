@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { QuizContext } from '../../context/State'
 
-import './activity.scss'
+import { QuizContext } from '../../context/State'
+import { IActivity, IQuestion, IRound } from '../../context/types'
+
 import Rounds from '../Round/'
 import Questions from '../Question/'
-import { IActivity, IQuestion, IRound } from '../../context/types'
+
 import Spinner from '../../components/spinner'
 import ErrorView from '../../components/error'
+
+import './activity.scss'
 
 const ActivityCard = () => {
   const navigate = useNavigate()
