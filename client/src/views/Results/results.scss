@@ -6,19 +6,16 @@
     flex-direction: column;
     height: 100vh;
     justify-content: space-between;
+    animation: resultsEntrance 1s ease 0s 1 normal forwards;
     
     @include small {
         @media (orientation: portrait) {
-            border-radius: 2vmin;
             height: 100%;
-            outline: 1px solid $border-color;
         }
     }
 
     @include medium {
-        border-radius: 2vmin;
         height: 100%;
-        outline: 1px solid $border-color;
     }
 
     header {
@@ -94,5 +91,17 @@
                 color: $error-color_des;
             }
         }
+    }
+}
+
+@keyframes resultsEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(-50vh);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

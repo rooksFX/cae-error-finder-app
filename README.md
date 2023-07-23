@@ -27,7 +27,7 @@ This project is using a Monorepo setup. This one repository consist of a Client 
 - Typescript
 - Context API and React Hooks for state management
 
-Structure
+**Structure**
 
 - **Views** - consist of non-reusable components and each represents a **page/route**
 - **Components** - consist of reusable components (e.g, **Modal**)

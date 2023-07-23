@@ -1,6 +1,12 @@
 @import '../../c_app.scss';
 
 .round-landing-view {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+
     header {
         padding: 24px;
 

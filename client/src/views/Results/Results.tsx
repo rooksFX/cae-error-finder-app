@@ -30,8 +30,8 @@ const Results = () => {
       for (const roundAnswer of (roundAnswers as IRoundAnswers[])) {
         flattenedAnswers = [...flattenedAnswers, ...roundAnswer.answers]
       }
-      const correctAnswers = (roundAnswers as boolean[]).filter((value: boolean) => value === true).length;
-      const incorrectAnswers = (roundAnswers as boolean[]).filter((value: boolean) => value === false).length;
+      const correctAnswers = (flattenedAnswers as boolean[]).filter((value: boolean) => value === true).length;
+      const incorrectAnswers = (flattenedAnswers as boolean[]).filter((value: boolean) => value === false).length;
       const newTotal: TTotal = {
         correct: correctAnswers,
         incorrect: incorrectAnswers,

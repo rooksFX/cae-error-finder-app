@@ -34,6 +34,7 @@ const renderDummyActivities = (activitiesLength: number) => {
 
 const Home = () => {
   const { activities, error, fetchActivitiesAction } = useContext(QuizContext);
+
   const [isFecthing, setIsFetching] = useState(false);
 
   const fetchActivities = () => {

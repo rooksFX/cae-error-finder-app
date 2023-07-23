@@ -15,13 +15,13 @@ interface IQuestionsProps {
 }
 
 const Questions = ({ activityID, activityName, data : questions, round = null, updateRoundAnswers } : IQuestionsProps) => {
+  const navigate = useNavigate();
+
   const { setResultsAction } = useContext(QuizContext);
 
   const [currentQuestion, setCurrentQuestion] = useState(1)
   const [answers, setAnswers] = useState<boolean[]>([]);
-
-  const navigate = useNavigate();
-
+  
   const handleAnswer = (value : boolean) => {
     const order = questions[currentQuestion - 1].order;
     const result = value === questions[currentQuestion - 1].is_correct 
@@ -70,7 +70,7 @@ const Questions = ({ activityID, activityName, data : questions, round = null, u
   }
 
   return (
-    <div className="question-slot">
+    <div className="question-slot" >
       <header>
         <h3>{activityName}{displayRound()}</h3>
         <h1>Q{currentQuestion}.</h1>
@@ -85,8 +85,7 @@ const Questions = ({ activityID, activityName, data : questions, round = null, u
             <button className='incorrect' onClick={() => handleAnswer(false)}><h4>INCORRECT</h4></button>
           </div>
         </div>
-
-    </div>
+      </div>
     </div>
   )
 }
