@@ -73,7 +73,7 @@
             height: auto;
         }
 
-        .answer, .round {
+        .answer-slot, .round {
             background: $content-background-color;
             border-bottom: 1px solid $border-color;
             display: flex;
@@ -84,6 +84,15 @@
             font-weight: bold;
             justify-content: center;
             text-align: center;
+        }
+
+        .answer {
+            &.correct {
+                color: $primary-color_des;
+            }
+            &.incorrect {
+                color: $error-color_des;
+            }
         }
     }
 }

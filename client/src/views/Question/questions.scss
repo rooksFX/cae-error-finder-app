@@ -114,14 +114,28 @@
                     flex: 1;
                     padding: 8px 24px;
                     text-align: center;
+
+                    &.correct {
+                        background-color: $primary-color;
+
+                        &:hover, &:active {
+                            background-color: $primary-color_des;
+                        }
+                    }
+
+                    &.incorrect {
+                        background-color: $error-color;
+
+                        &:hover, &:active {
+                            background-color: $error-color_des;
+                        }
+                    }
             
                     &:hover {
-                        background-color: #36a1ff;
                         box-shadow: 6px 6px 14px -6px rgba(0,0,0,0.32);
                     }
             
                     &:active {
-                        background-color: #0088ff;
                         box-shadow: none;
                         transform: translate(1px, 1px);
                     }

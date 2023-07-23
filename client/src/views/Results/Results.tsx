@@ -19,11 +19,11 @@ const Results = () => {
   const renderAnswer = (value: boolean, index: number) => {
     const answer = value ? 'CORRECT' : 'FALSE';
     return (
-      <div key={crypto.randomUUID()} className="answer">
-        <div>
+      <div key={crypto.randomUUID()} className="answer-slot">
+        <div className='quesstion-no'>
           Q{index+1} 
         </div>
-        <div>
+        <div className={`answer ${value? 'correct' : 'incorrect'}`} >
           <b>{answer}</b>
         </div>
       </div>

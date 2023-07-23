@@ -79,8 +79,8 @@ const Questions = ({ activityID, activityName, data : questions, round = null, u
             <h4>"{renderQuestion(questions[currentQuestion-1].stimulus)}"</h4>
           </div>
           <div className="actions">
-            <button onClick={() => handleAnswer(true)}><h4>CORRECT</h4></button>
-            <button onClick={() => handleAnswer(false)}><h4>INCORRECT</h4></button>
+            <button className='correct' onClick={() => handleAnswer(true)}><h4>CORRECT</h4></button>
+            <button className='incorrect' onClick={() => handleAnswer(false)}><h4>INCORRECT</h4></button>
           </div>
         </div>
 

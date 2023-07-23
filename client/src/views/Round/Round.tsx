@@ -5,7 +5,7 @@ import Questions from '../Question/'
 import './rounds.scss';
 import { QuizContext } from '../../context/State';
 import { useNavigate } from 'react-router-dom';
-import Modal from '../../components/modal/Modal';
+import Modal from '../../components/modal';
 
 interface IRoundsProps {
     currentRoundOrder: number
@@ -98,11 +98,11 @@ const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data:
   }
 
   const renderNextRoundPromptModal = () => {
-    const content = isLastRound() ? (<h3>View results?</h3>) : (<h3>Move to the next round?</h3>)
+    const content = isLastRound() ? (<h2>View results?</h2>) : (<h2>Move to the next round?</h2>)
     const footer = (
       <>
         <button onClick={restartRound}><h4>RESTART ROUND</h4></button>
-        <button onClick={handleNextRoundPrompt}><h4>OKAY</h4></button>
+        <button onClick={handleNextRoundPrompt}><h4>PROCEED</h4></button>
       </>
     )
     return {

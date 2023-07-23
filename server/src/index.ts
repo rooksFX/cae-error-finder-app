@@ -9,7 +9,7 @@ const app = express();
 const PROD_CLIENTS = ['https://cae-error-finder-app-client.onrender.com', 'https://cae-error-finder.onrender.com'];
 
 app.get('/', (req, res) => {
-    res.send('Hi World!');
+    res.send('API up and running...');
 });
 
 app.use(cors({ origin: PROD_CLIENTS }))

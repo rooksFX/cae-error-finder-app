@@ -6,8 +6,8 @@ import './activity.scss'
 import Rounds from '../Round/'
 import Questions from '../Question/'
 import { IActivity, IQuestion, IRound } from '../../context/types'
-import Spinner from '../../components/spinner/Spinner'
-import ErrorView from '../../components/error/Error'
+import Spinner from '../../components/spinner'
+import ErrorView from '../../components/error'
 
 const ActivityCard = () => {
   const navigate = useNavigate()
@@ -37,12 +37,18 @@ const ActivityCard = () => {
       fetchActivities();
     } else {
       const selectedActivity = activities.activities[activitiyID - 1]
-      setActivity(selectedActivity)
-      const questions = selectedActivity?.questions
-      const hasRounds = questions?.length ? 'questions' in questions[0] : false
-      setHasRounds(hasRounds)
-      const data = questions
-      setData(data)
+
+      if (selectedActivity) {
+        setActivity(selectedActivity)
+        const questions = selectedActivity?.questions
+        const hasRounds = questions?.length ? 'questions' in questions[0] : false
+        setHasRounds(hasRounds)
+        const data = questions
+        setData(data)
+      }
+      else {
+        navigate('/error')
+      }
     }
   }, [activities, activitiyID, navigate])
 
