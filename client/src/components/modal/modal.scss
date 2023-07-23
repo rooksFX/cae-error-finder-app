@@ -9,6 +9,7 @@
     position: fixed;
     width: 100vw;
     height: 100%;
+    z-index: 999;
 
     .modal {
         animation: modalEntrance 1s ease 0s 1 normal forwards;
