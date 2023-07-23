@@ -1,17 +1,56 @@
-import { useContext, useEffect } from 'react'
-import { IRoundAnswers } from '../../context/types'
-import { QuizContext } from '../../context/State'
+import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { IResults, IRoundAnswers } from '../../context/types'
+import { QuizContext } from '../../context/State'
+
 import './results.scss'
+
+type TTotal = {
+  correct: number;
+  incorrect: number;
+  total: number;
+}
 
 const Results = () => {
   const navigate = useNavigate();
 
+  const [total, setTotal] = useState<TTotal | null>(null)
+
   const { results } = useContext(QuizContext);
 
   useEffect(() => {
-    if (!results) navigate('/')
+    if (!results) {
+      navigate('/')
+      return
+    }
+    if (hasRounds()) {
+      const { answers: roundAnswers } = results as IResults;
+      let flattenedAnswers: boolean[] = [];
+      for (const roundAnswer of (roundAnswers as IRoundAnswers[])) {
+        flattenedAnswers = [...flattenedAnswers, ...roundAnswer.answers]
+      }
+      const correctAnswers = (roundAnswers as boolean[]).filter((value: boolean) => value === true).length;
+      const incorrectAnswers = (roundAnswers as boolean[]).filter((value: boolean) => value === false).length;
+      const newTotal: TTotal = {
+        correct: correctAnswers,
+        incorrect: incorrectAnswers,
+        total: flattenedAnswers.length
+      }
+      setTotal(newTotal);
+
+    }
+    else {
+      const { answers } = results as IResults;
+      const correctAnswers = (answers as boolean[]).filter((value: boolean) => value === true).length;
+      const incorrectAnswers = (answers as boolean[]).filter((value: boolean) => value === false).length;
+      const newTotal: TTotal = {
+        correct: correctAnswers,
+        incorrect: incorrectAnswers,
+        total: answers.length
+      }
+      setTotal(newTotal);
+    }
   }, [results, navigate])
 
   if (!results) return null;
@@ -30,6 +69,10 @@ const Results = () => {
     )
   }
 
+  const hasRounds = () => {
+    return typeof results.answers[0] !== 'boolean'
+  }
+
   return (
     <div className='results'>
       <header>
@@ -38,7 +81,7 @@ const Results = () => {
       </header>
       <div className="answers-slot custom-scroll">
         <div className="answers custom-scroll">
-        { (typeof results.answers[0] !== 'boolean') ?
+        { (hasRounds()) ?
           (results.answers as IRoundAnswers[]).map((answer) => (
             <div key={crypto.randomUUID()}  className='rounds-slot'>
               <div className='round'>ROUND {answer.order}</div>
@@ -50,6 +93,14 @@ const Results = () => {
           :
           (results.answers as boolean[]).map((answer, index) => renderAnswer(answer, index))
         }
+        <div className="answer-slot">
+          <div className='quesstion-no'>
+            <h3>Total: </h3>
+          </div>
+          <div className={`answer ${(total?.correct || 0) > (total?.incorrect || 0) ? 'correct' : 'incorrect'}`} >
+            <h3>{total?.correct} / {total?.total}</h3>
+          </div>
+        </div>
         </div>
       </div>
       <footer>
