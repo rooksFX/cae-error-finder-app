@@ -2,7 +2,7 @@
     "name": "cae-error-finder-app",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "index.ts",
     "scripts": {
       "install-server": "cd server && npm install",
       "start-server": "cd server && npm run dev",

@@ -1,6 +1,5 @@
 import { Dispatch, createContext, useReducer } from 'react'
 import Reducer from './Reducer'
-// import { activities as mockData } from '../utils/mockData';
 import { IActivities, IResults, IState, ActionTypes, TActionTypes } from './types';
 
 const PROD_API = 'https://cae-error-finder-app-service.onrender.com'
@@ -36,7 +35,6 @@ export const QuizProvider = ({ children } : { children: JSX.Element }) => {
     }
 
     const setResultsAction = (payload: IResults) => {
-
         dispatch({
             type: ActionTypes.SET_RESULTS,
             payload,
