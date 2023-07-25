@@ -13,6 +13,7 @@ Run the following commands to start the app:
 
 - `npm run start-server` - Server
 - `npm run start-client` - Client
+- `rpm run start-app` - Will run both Server and Client at the same time
 
 Server will run on **http://localhost:5000/**  
 Client will run on **http://localhost:5173/**
