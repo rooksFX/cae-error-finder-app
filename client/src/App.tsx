@@ -1,7 +1,7 @@
 import './App.scss'
-import Home from './views/Home';
+import Home from './views/home';
 import { Route, Routes } from 'react-router-dom';
-import Activity from './views/Activity/';
+import Activity from './views/activity';
 import Results from './views/Results/';
 import { QuizProvider } from './context/State';
 import Error from './components/error';
