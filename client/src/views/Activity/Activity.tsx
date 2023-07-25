@@ -4,8 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { QuizContext } from '../../context/State'
 import { IActivity, IQuestion, IRound } from '../../context/types'
 
-import Rounds from '../Round'
-import Questions from '../Question'
+import Rounds from '../round'
+import Questions from '../question'
 
 import Spinner from '../../components/spinner'
 import ErrorView from '../../components/error'
