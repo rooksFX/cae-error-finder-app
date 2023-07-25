@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { QuizContext } from '../../context/State'
 import { IActivity, IQuestion, IRound } from '../../context/types'
 
-import Rounds from '../round'
+import Rounds from '../Round'
 import Questions from '../question'
 
 import Spinner from '../../components/spinner'
@@ -23,20 +23,20 @@ const ActivityCard = () => {
   const [hasRounds, setHasRounds] = useState(false)
   const [data, setData] = useState<IQuestion[] | IRound[] | null>(null)
   const [currentRoundOrder, setCurrentRoundOrder] = useState(1)
-  const [IsFetching, setIsFetching] = useState(false)
+  const [IsFetching, setIsFetching] = useState(false);
 
   const fetchActivities = () => {
       if (fetchActivitiesAction) {
-        setIsFetching(true)
+        setIsFetching(true);
         void fetchActivitiesAction().finally(() => {
-          setIsFetching(false)
+          setIsFetching(false);
         })
       }
   }
 
   useEffect(() => {
     if (!activities) {
-      fetchActivities()
+      fetchActivities();
     } else {
       const selectedActivity = activities.activities[activitiyID - 1]
 

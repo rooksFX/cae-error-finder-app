@@ -1,9 +1,9 @@
 import './modal.scss'
 
 interface IModalProps {
-    header?: JSX.Element | string
-    content?: JSX.Element | string
-    footer?: JSX.Element | string
+    header?: JSX.Element | string;
+    content?: JSX.Element | string;
+    footer?: JSX.Element | string;
 }
 
 const Modal = ({ content } : { content: IModalProps }) => {

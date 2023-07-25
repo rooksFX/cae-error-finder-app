@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-import { QuizContext } from '../../context/State'
-import { IQuestion, IRound } from '../../context/types'
+import { QuizContext } from '../../context/State';
+import { IQuestion, IRound } from '../../context/types';
 
-import './questions.scss'
+import './questions.scss';
 
 interface IQuestionsProps {
     activityID: number;
@@ -15,30 +15,30 @@ interface IQuestionsProps {
 }
 
 const Questions = ({ activityID, activityName, data : questions, round = null, updateRoundAnswers } : IQuestionsProps) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { setResultsAction } = useContext(QuizContext)
+  const { setResultsAction } = useContext(QuizContext);
 
   const [currentQuestion, setCurrentQuestion] = useState(1)
-  const [answers, setAnswers] = useState<boolean[]>([])
+  const [answers, setAnswers] = useState<boolean[]>([]);
   
   const handleAnswer = (value : boolean) => {
-    const order = questions[currentQuestion - 1].order
+    const order = questions[currentQuestion - 1].order;
     const result = value === questions[currentQuestion - 1].is_correct 
 
     // if existing
     const updatedAnswers = [...answers]
     if (updatedAnswers[order] !== undefined) {
-        updatedAnswers[order] = result
+        updatedAnswers[order] = result;
     } else {
-        updatedAnswers.push(result)
+        updatedAnswers.push(result);
     }
     setAnswers(updatedAnswers)
     if (order + 1 > questions.length) {
         // If Activity has Rounds
         if (round && updateRoundAnswers) {
           // Move to next Round
-          updateRoundAnswers(updatedAnswers)
+          updateRoundAnswers(updatedAnswers);
         }
         else {
           // Update results
@@ -62,8 +62,8 @@ const Questions = ({ activityID, activityName, data : questions, round = null, u
   }
 
   const renderQuestion = (question: string) => {
-    const split = question.split('*')
-    const [ start, highlight, end]  = split
+    const split = question.split('*');
+    const [ start, highlight, end]  = split;
     return (
       <>{start}{' '}<span className='highlight'>*{highlight}*</span>{' '}{end}</>
     )

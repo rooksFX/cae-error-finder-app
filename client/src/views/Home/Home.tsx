@@ -21,12 +21,11 @@ const dummayActivitiesName = [
   'Activity Ten',
 ]
 
-// This is just for the display
 const renderDummyActivities = (activitiesLength: number) => {
-  const dummayActivities = []
+  const dummayActivities = [];
 
   for (let i = activitiesLength; i < 8; i++) {
-    const dummayActivity = <Link className="activity disabled" key={crypto.randomUUID()} to='/' >{dummayActivitiesName[i]}</Link>
+    const dummayActivity = <Link className="activity disabled" key={crypto.randomUUID()} to='/' >{dummayActivitiesName[i]}</Link>;
     dummayActivities.push(dummayActivity)
   }
 
@@ -34,22 +33,22 @@ const renderDummyActivities = (activitiesLength: number) => {
 }
 
 const Home = () => {
-  const { activities, error, fetchActivitiesAction } = useContext(QuizContext)
+  const { activities, error, fetchActivitiesAction } = useContext(QuizContext);
 
-  const [isFecthing, setIsFetching] = useState(false)
+  const [isFecthing, setIsFetching] = useState(false);
 
   const fetchActivities = () => {
     if (fetchActivitiesAction) {
       fetchActivitiesAction().finally(() => {
-        setIsFetching(false)
+        setIsFetching(false);
       })
     }
   }
 
   useEffect(() => {
     if (!activities) {
-      setIsFetching(true)
-      fetchActivities()
+      setIsFetching(true);
+      fetchActivities();
     }
   }, [])
 
