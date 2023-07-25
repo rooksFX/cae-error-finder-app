@@ -1,4 +1,4 @@
-import { IState, ActionTypes, TActionTypes } from "./types";
+import { IState, ActionTypes, TActionTypes } from "./types"
 
 export default (state: IState, action: TActionTypes) : IState => {
     switch(action.type) {

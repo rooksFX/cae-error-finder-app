@@ -1,10 +1,13 @@
+import { Route, Routes } from 'react-router-dom'
+import { QuizProvider } from './context/State'
+
+import Home from './views/home'
+import Activity from './views/activity'
+import Results from './views/results'
+
+import Error from './components/error'
+
 import './App.scss'
-import Home from './views/home';
-import { Route, Routes } from 'react-router-dom';
-import Activity from './views/activity';
-import Results from './views/Results/';
-import { QuizProvider } from './context/State';
-import Error from './components/error';
 
 function App() {
   return (

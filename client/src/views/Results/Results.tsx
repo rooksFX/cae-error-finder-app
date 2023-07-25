@@ -13,11 +13,11 @@ type TTotal = {
 }
 
 const Results = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const [total, setTotal] = useState<TTotal | null>(null)
 
-  const { results } = useContext(QuizContext);
+  const { results } = useContext(QuizContext)
 
   useEffect(() => {
     if (!results) {
@@ -25,38 +25,38 @@ const Results = () => {
       return
     }
     if (hasRounds()) {
-      const { answers: roundAnswers } = results as IResults;
-      let flattenedAnswers: boolean[] = [];
+      const { answers: roundAnswers } = results
+      let flattenedAnswers: boolean[] = []
       for (const roundAnswer of (roundAnswers as IRoundAnswers[])) {
         flattenedAnswers = [...flattenedAnswers, ...roundAnswer.answers]
       }
-      const correctAnswers = (flattenedAnswers as boolean[]).filter((value: boolean) => value === true).length;
-      const incorrectAnswers = (flattenedAnswers as boolean[]).filter((value: boolean) => value === false).length;
+      const correctAnswers = (flattenedAnswers).filter((value: boolean) => value === true).length
+      const incorrectAnswers = (flattenedAnswers).filter((value: boolean) => value === false).length
       const newTotal: TTotal = {
         correct: correctAnswers,
         incorrect: incorrectAnswers,
         total: flattenedAnswers.length
       }
-      setTotal(newTotal);
+      setTotal(newTotal)
 
     }
     else {
-      const { answers } = results as IResults;
-      const correctAnswers = (answers as boolean[]).filter((value: boolean) => value === true).length;
-      const incorrectAnswers = (answers as boolean[]).filter((value: boolean) => value === false).length;
+      const { answers } = results;
+      const correctAnswers = (answers as boolean[]).filter((value: boolean) => value === true).length
+      const incorrectAnswers = (answers as boolean[]).filter((value: boolean) => value === false).length
       const newTotal: TTotal = {
         correct: correctAnswers,
         incorrect: incorrectAnswers,
         total: answers.length
       }
-      setTotal(newTotal);
+      setTotal(newTotal)
     }
   }, [results, navigate])
 
-  if (!results) return null;
+  if (!results) return null
 
   const renderAnswer = (value: boolean, index: number) => {
-    const answer = value ? 'CORRECT' : 'FALSE';
+    const answer = value ? 'CORRECT' : 'FALSE'
     return (
       <div key={crypto.randomUUID()} className="answer-slot">
         <div className='quesstion-no'>

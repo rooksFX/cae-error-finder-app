@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
-import { QuizContext } from '../../context/State';
+import { QuizContext } from '../../context/State'
 import { IQuestion, IRound, IRoundAnswers } from '../../context/types'
 
 import Questions from '../question'
-import Modal from '../../components/modal';
+import Modal from '../../components/modal'
 
-import './rounds.scss';
+import './rounds.scss'
 
 interface IRoundProps {
     currentRoundOrder: number
@@ -18,18 +18,18 @@ interface IRoundProps {
 }
 
 const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data: rounds } : IRoundProps) => {
-  const { setResultsAction } = useContext(QuizContext);
+  const { setResultsAction } = useContext(QuizContext)
 
   const [displayRoundPage, setDisplayRoundPage] = useState(true)
-  const [roundAnswers, setRoundAnswers] = useState<IRoundAnswers[]>([]);
+  const [roundAnswers, setRoundAnswers] = useState<IRoundAnswers[]>([])
   const [isNextRoundPrompt, setIsNextRoundPrompt] = useState(false)
   const [quetionsKey, setQuetionsKey] = useState(0)
 
-  const currentRound = rounds.find(round => round.order === currentRoundOrder) as IRound;
+  const currentRound = rounds.find(round => round.order === currentRoundOrder) as IRound
 
-  const isLastRound = () => currentRoundOrder + 1 > rounds.length;
+  const isLastRound = () => currentRoundOrder + 1 > rounds.length
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     setTimeout(() => setDisplayRoundPage(false), 2000)
@@ -66,12 +66,12 @@ const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data:
           activityID: activityID,
           activityName: activityName,
           answers: newRoundAnswers,
-        });
+        })
       }
-      setIsNextRoundPrompt(true);
+      setIsNextRoundPrompt(true)
     }
     else {
-      setIsNextRoundPrompt(true);
+      setIsNextRoundPrompt(true)
     }
   }
 
@@ -84,7 +84,7 @@ const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data:
       navigate('/results')
     }
     else {
-      updateRound();
+      updateRound()
       setIsNextRoundPrompt(false)
     }
   }
