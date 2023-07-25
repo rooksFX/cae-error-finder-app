@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { QuizContext } from '../../context/State'
 import { IQuestion, IRound, IRoundAnswers } from '../../context/types'
 
-import Questions from '../question'
+import Questions from '../Question'
 import Modal from '../../components/modal'
 
 import './rounds.scss'
