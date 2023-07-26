@@ -3,7 +3,7 @@
 .question-slot {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
     justify-content: space-between;
     align-items: center;
     animation: questionSlotEntrance 1s ease 0s 1 normal forwards;

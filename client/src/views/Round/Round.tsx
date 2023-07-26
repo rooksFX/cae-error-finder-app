@@ -32,12 +32,12 @@ const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data:
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => setDisplayRoundPage(false), 2000)
-  }, [displayRoundPage])
+    setTimeout(() => setDisplayRoundPage(false), 2000);
+  }, [displayRoundPage]);
 
   useEffect(() => {
-    setDisplayRoundPage(true)
-  }, [currentRoundOrder])
+    setDisplayRoundPage(true);
+  }, [currentRoundOrder]);
   
   
   const updateRoundAnswers = (newAnswers: boolean[]) => {
@@ -46,56 +46,49 @@ const Round = ({ currentRoundOrder, activityID, activityName, updateRound, data:
       answers: newAnswers,
     }
     
-    const newRoundAnswers = [...roundAnswers]
-    const roundAnswersExist = roundAnswers.find(round => round.order === currentRound.order)
+    const newRoundAnswers = [...roundAnswers];
+    const roundAnswersExist = roundAnswers.find(round => round.order === currentRound.order);
 
     // If Round has been previously answered already
     // update the answers of the registered Round
     if (roundAnswersExist) {
-      newRoundAnswers[currentRound.order-1] = newRoundAnswer
+      newRoundAnswers[currentRound.order-1] = newRoundAnswer;
     }
     else {
-      newRoundAnswers.push(newRoundAnswer)
+      newRoundAnswers.push(newRoundAnswer);
     }
-    setRoundAnswers(newRoundAnswers)
-    if (currentRoundOrder + 1 > rounds.length) {
-      // Exit Questions
-      // Trigger prompt...
-      if (setResultsAction) {
-        setResultsAction({
-          activityID: activityID,
-          activityName: activityName,
-          answers: newRoundAnswers,
-        });
-      }
-      setIsNextRoundPrompt(true);
-    }
-    else {
-      setIsNextRoundPrompt(true);
-    }
+    setRoundAnswers(newRoundAnswers);
+    setIsNextRoundPrompt(true);
   }
 
   const handleClick = () => {
-    setDisplayRoundPage(false)
+    setDisplayRoundPage(false);
   }
 
   const handleNextRoundPrompt = () => {
     if (isLastRound()) {
-      navigate('/results')
+      if (setResultsAction) {
+        setResultsAction({
+          activityID: activityID,
+          activityName: activityName,
+          answers: roundAnswers,
+        });
+      }
+      navigate('/results');
     }
     else {
       updateRound();
-      setIsNextRoundPrompt(false)
+      setIsNextRoundPrompt(false);
     }
   }
 
   const restartRound = () => {
-    setIsNextRoundPrompt(false)
-    setQuetionsKey(key => key + 1)
+    setIsNextRoundPrompt(false);
+    setQuetionsKey(key => key + 1);
   }
 
   const renderNextRoundPromptModal = () => {
-    const content = isLastRound() ? (<h2>View results?</h2>) : (<h2>Move to the next round?</h2>)
+    const content = isLastRound() ? (<h2>View results?</h2>) : (<h2>Move to the next round?</h2>);
     const footer = (
       <>
         <button onClick={restartRound}><h4>RESTART ROUND</h4></button>

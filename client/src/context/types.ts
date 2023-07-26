@@ -10,6 +10,7 @@ export interface IResults {
     activityName: string;
     activityID: number | null;
     answers: boolean[] | IRoundAnswers[];
+    total?: TTotal;
 }
 
 export interface IRoundAnswers {
@@ -19,7 +20,7 @@ export interface IRoundAnswers {
 
 export interface IState {
     activities: IActivities | null;
-    results: IResults | null;
+    results: IResults[] | null;
     error: string;
     fetchActivitiesAction?: () => Promise<void>;
     setResultsAction?: Dispatch<IResults>;
@@ -33,7 +34,7 @@ export enum ActionTypes {
 
 export type TActionTypes = 
     { type: ActionTypes.GET_ACTIVITIES, payload: IActivities }
-    | { type: ActionTypes.SET_RESULTS, payload: IResults }
+    | { type: ActionTypes.SET_RESULTS, payload: IResults[] }
     | { type: ActionTypes.SET_ERROR, payload: string } 
 
 export interface IActivity {
@@ -54,4 +55,10 @@ export interface IRound {
     round_title: string;
     order: number;
     questions: IQuestion[];
+}
+
+export type TTotal = {
+  correct: number;
+  incorrect: number;
+  total: number;
 }

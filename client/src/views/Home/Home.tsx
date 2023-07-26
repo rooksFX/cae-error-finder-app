@@ -33,7 +33,7 @@ const renderDummyActivities = (activitiesLength: number) => {
 }
 
 const Home = () => {
-  const { activities, error, fetchActivitiesAction } = useContext(QuizContext);
+  const { activities, error, fetchActivitiesAction, results } = useContext(QuizContext);
 
   const [isFecthing, setIsFetching] = useState(false);
 
@@ -66,7 +66,6 @@ const Home = () => {
 
   if (activities) return (
     <div className='home'>
-      <>
         <header>
           <h3>CAE</h3>
           <h1>{activities?.name ?? ''}</h1>
@@ -79,7 +78,9 @@ const Home = () => {
             {renderDummyActivities(activities?.activities.length)}
           </div>
         </div>
-      </>
+        {results?.length &&
+          <Link className='results-link' to='/results'><h3>RESULTS</h3></Link>
+        }
     </div>
   )
 
