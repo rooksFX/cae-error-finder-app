@@ -4,11 +4,14 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    
     justify-content: space-between;
     min-height: 100vh;
     animation: resultsEntrance 1s ease 0s 1 normal forwards;
     text-align: center;
+
+    .results-slot {
+        width: 100%;
+    }
 
     h1 {
         color: #fff;

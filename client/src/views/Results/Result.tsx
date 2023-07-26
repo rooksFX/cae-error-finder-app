@@ -1,44 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import { IResults, IRoundAnswers, TTotal } from '../../context/types';
+import { IResults, IRoundAnswers } from '../../context/types';
 
 import './result.scss'
 
 const Result = ({ result } : { result: IResults }) => {
-  const navigate = useNavigate();
-
-  const [total, setTotal] = useState<TTotal | null>(null)
-
-  useEffect(() => {
-    if (hasRounds()) {
-      const { answers: roundAnswers } = result;
-      let flattenedAnswers: boolean[] = [];
-      for (const roundAnswer of (roundAnswers as IRoundAnswers[])) {
-        flattenedAnswers = [...flattenedAnswers, ...roundAnswer.answers]
-      }
-      const correctAnswers = (flattenedAnswers).filter((value: boolean) => value === true).length;
-      const incorrectAnswers = (flattenedAnswers).filter((value: boolean) => value === false).length;
-      const newTotal: TTotal = {
-        correct: correctAnswers,
-        incorrect: incorrectAnswers,
-        total: flattenedAnswers.length
-      }
-      setTotal(newTotal);
-
-    }
-    else {
-      const { answers } = result;
-      const correctAnswers = (answers as boolean[]).filter((value: boolean) => value === true).length;
-      const incorrectAnswers = (answers as boolean[]).filter((value: boolean) => value === false).length;
-      const newTotal: TTotal = {
-        correct: correctAnswers,
-        incorrect: incorrectAnswers,
-        total: answers.length
-      }
-      setTotal(newTotal);
-    }
-  }, [result, navigate])
 
   if (!result) return null;
 
@@ -81,14 +45,12 @@ const Result = ({ result } : { result: IResults }) => {
           <div className='quesstion-no'>
             <h3>Total: </h3>
           </div>
-          <div className={`answer ${(total?.correct || 0) > (total?.incorrect || 0) ? 'correct' : 'incorrect'}`} >
-            <h3>{total?.correct} / {total?.total}</h3>
+          <div className={`answer ${(result.total?.correct || 0) > (result.total?.incorrect || 0) ? 'correct' : 'incorrect'}`} >
+            <h3>{result.total?.correct} / {result.total?.total}</h3>
           </div>
         </div>
         </div> 
       </div>
-      <footer>
-      </footer>
     </div>
   )
 }

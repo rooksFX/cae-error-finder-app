@@ -25,7 +25,9 @@ const Results = () => {
   return (
     <div className='results'>
       <h1>Results</h1>
-      {results.map((result) => (<Result key={crypto.randomUUID()} result={result} />))}
+      <div className="results-slot">
+        {results.map((result) => (<Result key={crypto.randomUUID()} result={result} />))}
+      </div>
       <footer>
         <Link to='/' ><h4>HOME</h4></Link>
       </footer>
